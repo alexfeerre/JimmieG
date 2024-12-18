@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Scrollbar personalizado */
+    ::-webkit-scrollbar {
+      width: 15px;
+    }
+    ::-webkit-scrollbar-track {
+      background: black;
+      border: 1px solid white;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: black;
+      border: 1px solid white;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #333;
+    }
+
+    /* Fuente variable */
+    @font-face {
+      font-family: 'JimmieG';
+      src: url('./Jimmie_G.ttf') format('truetype');
+      font-weight: 1 1000;
+    }
+
+    /* Estilo de las frases */
+    .frase {
+  font-family: 'JimmieG', sans-serif;
+  text-transform: uppercase; /* Convertir a mayúsculas */
+  letter-spacing: 1px;
+  font-size: 2rem;
+  white-space: normal; /* Permitir saltos de línea */
+  word-wrap: break-word; /* Romper palabras largas */
+  overflow: hidden; /* Evitar desbordamientos */
+  transition: opacity 1s ease-in-out; /* Para hacer la transición de opacidad */
+}
+
+
+    /* Evitar scroll en el contenedor de frases */
+    #fraseContainer {
+      overflow: hidden;
+      max-height: 100%; /* Limita la altura */
+
+     
+    }
+    /* Estilos personalizados */
+    h1 {
+      font-family: 'JimmieG', sans-serif;
+      font-variation-settings: 'dgnt' 1000; /* Peso inicial de la tipografía */
+
+    }
+  </style>
+</head>
+<body class="bg-black text-white h-screen">
+  <div class="grid grid-cols-6 h-screen">
+    <!-- Sidebar -->
+    <div class="col-span-1 flex flex-col items-center justify-center border-r">
+      <!-- Título -->
+      <a href="index.html" class="text-4xl mb-12 block hover:scale-105 transition-transform duration-300">
+        <h1>INICIO</h1>
+      </a>
+      <!-- Navegación -->
+      <nav class="flex flex-col space-y-6">
+        <a href="korsakoff.html" class="text-base leading-7 hover:text-gray-400">Korsakoff</a>
+        <a href="tipo.html" class="text-base leading-7 hover:text-gray-400">Tipografía</a>
+        <a href="memorias.html" class="text-base leading-7 hover:text-gray-400">Memorias</a>
+      </nav>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div id="fraseContainer" class="col-span-5 px-8 pt-36 pb-36 pl-64 pr-36">
+      <div  class="space-y-4 leading-relaxed"></div>
+    </div>
+  </div>
+
+  <script>
+   const frases = [
+  "Jimmie vive sin memoria.",
+  "El tiempo se pierde.",
+  "Jimmie no recuerda hoy.",
+  "La memoria nunca regresa.",
+  "Su mente olvida el ahora.",
+  "El presente no existe.",
+  "Jimmie siempre sonrie.",
+  "La memoria se borra sola.",
+  "El olvido no termina nunca.",
+  "Su mente no avanza.",
+  "Jimmie saluda sin conocer.",
+  "El tiempo nunca cambia.",
+  "El presente se borra pronto.",
+  "Jimmie no ve el futuro.",
+  "La memoria nunca vuelve.",
+  "El dia se repite siempre.",
+  "Jimmie solo conoce ayer.",
+  "El tiempo no deja marcas.",
+  "Su mente no guarda nada.",
+  "El olvido llena su vida.",
+  "El presente se va rapido.",
+  "Jimmie pierde cada instante.",
+  "Su mente solo mira atras.",
+  "El tiempo nunca avanza.",
+  "Jimmie vive en un ciclo.",
+  "El olvido siempre gana.",
+  "Jimmie olvida cada segundo.",
+  "La memoria no deja rastro.",
+  "Su mente es un mar quieto.",
+  "El presente nunca se queda.",
+  "Jimmie nunca cambia su hoy.",
+  "El tiempo no deja huellas.",
+  "La memoria no lo toca.",
+  "Jimmie no ve el cambio.",
+  "El olvido siempre regresa.",
+  "Su mente vive en silencio.",
+  "El dia siempre comienza igual.",
+  "Jimmie olvida quien eres.",
+  "La vida sin memoria se borra.",
+  "El tiempo no se detiene.",
+  "Jimmie solo mira lo viejo.",
+  "El presente no deja huella.",
+  "Su mente nunca vuelve aqui.",
+  "El tiempo nunca deja memoria.",
+  "Jimmie no vive en el ahora.",
+  "El olvido borra todo siempre.",
+  "Su vida es un dia eterno.",
+  "El tiempo es un ciclo roto.",
+  "Jimmie vive en el mismo momento.",
+  "La memoria nunca toca su mente.",
+  "Jimmie nunca ve el presente."
+];
+
+
+
+
+    const container = document.getElementById("fraseContainer");
+    let pesoVariable = 1000; // Valor inicial para el eje dgnt
+    const decremento = 100; // Paso de decremento
+    let contadorFrases = 0; // Contador para las frases generadas
+
+    // Función para limpiar tildes y convertir a mayúsculas
+    function limpiarTexto(texto) {
+      return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+    }
+
+    // Escribir frase con efecto máquina de escribir y eje dgnt dinámico
+    function escribirFrase(texto, callback) {
+      const fraseElement = document.createElement("p");
+      fraseElement.classList.add("frase");
+      fraseElement.style.fontVariationSettings = `'dgnt' ${pesoVariable}`; // Aplicar el peso dgnt dinámicamente
+      container.prepend(fraseElement); // Añadir frase al inicio
+
+      // Aplicar la opacidad decreciente a la frase anterior
+      fraseElement.style.opacity = 1; // La nueva frase tiene opacidad completa
+
+      let index = 0;
+      function escribir() {
+        if (index < texto.length) {
+          fraseElement.textContent += texto.charAt(index);
+          index++;
+          setTimeout(escribir, 50); // Velocidad de escritura
+        } else {
+          callback();
+        }
+      }
+      escribir();
+    }
+
+    // Función para hacer que las frases anteriores pierdan opacidad gradualmente
+    function reducirOpacidad() {
+      const frasesElementos = container.querySelectorAll(".frase");
+      frasesElementos.forEach((frase, index) => {
+        // Reducir opacidad de las frases anteriores
+        if (index < contadorFrases) {
+          const opacidad = 1 - (index * 0.15); // 0.1 es la cantidad de opacidad que se reduce por cada frase
+          frase.style.opacity = Math.max(opacidad, 0); // Asegurar que la opacidad no sea menor que 0
+        }
+      });
+    }
+
+    function generarFrase() {
+      const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+      const fraseLimpia = limpiarTexto(fraseAleatoria);
+
+      escribirFrase(fraseLimpia, () => {
+        // Ajustar el eje dgnt
+        if (pesoVariable > 1) {
+          pesoVariable -= decremento;
+          if (pesoVariable < 1) pesoVariable = 1; // Mantener en 1 si es menor
+        }
+
+        // Aumentar el contador de frases y reducir la opacidad de las anteriores
+        contadorFrases++;
+        reducirOpacidad();
+
+        setTimeout(generarFrase, 3000); // Nueva frase cada 3 segundos
+      });
+    }
+
+    // Iniciar ciclo
+    generarFrase();
+  </script>
+</body>
+</html>

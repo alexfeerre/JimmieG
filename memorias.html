@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memorias Interactivas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Scrollbar personalizado */
+    ::-webkit-scrollbar {
+      width: 15px;
+    }
+    ::-webkit-scrollbar-track {
+      background: black;
+      border: 1px solid white;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: black;
+      border: 1px solid white;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #333;
+    }
+
+    /* Fuente variable */
+    @font-face {
+      font-family: 'JimmieG';
+      src: url('./Jimmie_G.ttf') format('truetype');
+      font-weight: 1 1000;
+    }
+
+    /* Fondo general */
+    body {
+      background-color: black;
+      color: white;
+      margin: 0;
+      height: 100vh; /* Fijar altura completa */
+      display: flex; /* Para alinear hijos */
+      overflow: hidden; /* Evitar scroll global */
+      font-family: 'JimmieG', sans-serif;
+      font-variation-settings: 'dgnt' 1000; /* Peso inicial de la tipografía */    }
+
+    /* Sidebar */
+    #sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid white;
+      height: 100vh; /* Fijo y ocupa toda la altura */
+      width: 16.666%; /* 1/6 del ancho */
+      padding: 2rem;
+    }
+
+    #sidebar a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    #sidebar a:hover {
+      color: gray;
+      transform: scale(1.05); /* Pequeño efecto de escala */
+    }
+
+    #sidebar h1 {
+      font-family: 'JimmieG', sans-serif;
+      font-variation-settings: 'dgnt' 1000;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Contenido principal con scroll */
+    #mainContent {
+      flex: 1; /* Ocupa el resto del espacio */
+      overflow-y: auto; /* Habilita scroll solo en el contenedor principal */
+      padding: 2rem;
+    }
+
+    /* Contenedor editable */
+    #contenedorEditable {
+      font-family: 'JimmieG', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 2rem;
+      line-height: 2.5rem;
+      background: transparent;
+      border: none;
+      color: white;
+      outline: none;
+      caret-color: white;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      width: 100%;
+      height: auto;
+      min-height: 200px;
+      overflow-wrap: break-word;
+    }
+    
+    span.variable-weight {
+      display: inline;
+      font-variation-settings: 'dgnt' 1000;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <!-- Sidebar -->
+    <a href="index.html" class="hover:scale-105 transition-transform duration-300">
+      <h1>INICIO</h1>
+    </a>
+    <nav class="flex flex-col space-y-6">
+      <a href="korsakoff.html" class="text-base leading-7 hover:text-gray-400">Korsakoff</a>
+      <a href="tipo.html" class="text-base leading-7 hover:text-gray-400">Tipografía</a>
+      <a href="memorias.html" class="text-base leading-7 hover:text-gray-400">Memorias</a>
+    </nav>
+  </div>
+
+  <!-- Contenido Principal -->
+  <div id="mainContent">
+    <div id="contenedorEditable" contenteditable="true" placeholder="Escribe algo..."></div>
+  </div>
+
+  <script>
+    const contenedorEditable = document.getElementById('contenedorEditable');
+
+    // Actualizar pesos con un cambio de 1 en 1
+    function actualizarPesos() {
+      const contenido = contenedorEditable.innerText;
+      let fragment = '';
+      for (let i = 0; i < contenido.length; i++) {
+        const peso = Math.max(1000 - i, 100);
+        const char = contenido[i] === '\n' ? '<br>' : contenido[i];
+        fragment += `<span class="variable-weight" style="font-variation-settings: 'dgnt' ${peso};">${char}</span>`;
+      }
+      contenedorEditable.innerHTML = fragment;
+      setCaretAtEnd(contenedorEditable);
+    }
+
+    function setCaretAtEnd(element) {
+      const range = document.createRange();
+      const selection = window.getSelection();
+      range.selectNodeContents(element);
+      range.collapse(false);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+
+    contenedorEditable.addEventListener('input', function () {
+      actualizarPesos();
+    });
+
+    contenedorEditable.addEventListener('focus', function () {
+      if (contenedorEditable.innerText.trim() === 'Escribe algo...') {
+        contenedorEditable.innerText = '';
+      }
+    });
+
+    contenedorEditable.addEventListener('blur', function () {
+      if (contenedorEditable.innerText.trim() === '') {
+        contenedorEditable.innerText = 'Escribe algo...';
+      }
+    });
+  </script>
+</body>
+</html>

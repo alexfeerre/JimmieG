@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipografía</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @font-face {
+      font-family: 'JimmieG';
+      src: url('./Jimmie_G.ttf') format('truetype');
+      font-weight: 1 1000; /* Define el rango de peso de la fuente */
+    }
+
+    body {
+      font-family: 'JimmieG', sans-serif;
+      font-variation-settings: 'dgnt' 1000; /* Peso inicial de la tipografía */
+    }
+
+    /* Scrollbar personalizado */
+    ::-webkit-scrollbar {
+      width: 15px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: black;
+      border: 1px solid white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: black;
+      border: 1px solid white;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #333;
+    }
+
+    /* Transición para el cambio de peso */
+    .letter-box {
+      transition: font-variation-settings 2s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <div class="grid grid-cols-6 h-screen">
+    <!-- Sidebar -->
+    <div class="relative block col-span-1 h-full flex flex-col items-center justify-center border-r">
+      <div id="indicator" class="absolute top-0 left-0 w-1 bg-white transition-all duration-300"></div>
+      <a href="index.html" class="text-4xl mb-12 block hover:scale-105 transition-transform duration-300">
+        <h1>INICIO</h1>
+      </a>
+      <nav class="flex flex-col space-y-6">
+        <a href="korsakoff.html" class="nav-link text-base leading-7 hover:text-gray-400 hover:scale-105 transition-transform duration-300">Korsakoff</a>
+        <a href="tipo.html" class="nav-link text-base leading-7 hover:text-gray-400 hover:scale-105 transition-transform duration-300">Tipografía</a>
+        <a href="memorias.html" class="nav-link text-base leading-7 hover:text-gray-400 hover:scale-105 transition-transform duration-300">Memorias</a>
+      </nav>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="col-span-5 overflow-y-auto px-8 pt-36 pb-36 pl-36 pr-36">
+      <h2 class="text-4xl mb-12">Mayúsculas</h2>
+      <div class="flex flex-wrap gap-4 justify-start">
+        <!-- Cajas de letras -->
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          A
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          B
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          C
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          D
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          E
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          F
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          G
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          H
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          I
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          J
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          K
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          L
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          M
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          N
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          Ñ
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          O
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          V
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          W
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          X
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          Y
+        </div>
+        <div class="letter-box flex items-center justify-center border border-white rounded-lg text-2xl font-semibold w-20 h-20 cursor-pointer">
+          Z
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Seleccionar todas las cajas de letras
+    const letterBoxes = document.querySelectorAll('.letter-box');
+
+    letterBoxes.forEach((box) => {
+      let weightState = 1000; // Estado inicial en 1000
+
+      box.addEventListener('click', () => {
+        // Alterna entre 1000 y 1
+        weightState = weightState === 1000 ? 1 : 1000;
+
+        // Aplica el nuevo peso a la caja
+        box.style.fontVariationSettings = `'dgnt' ${weightState}`;
+      });
+    });
+  </script>
+</body>
+</html>
